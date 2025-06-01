@@ -9,14 +9,18 @@ export default function Verify() {
   const [error, setError] = useState('');
   const [link, setLink] = useState('');
 
-  useEffect(() => {
-    if (!token) return;
+useEffect(() => {
+  if (!token) return;
 
-    async function fetchLink() {
-      setLoading(true);
-      setError('');
-      try {
-        const res = await fetch(`/api/verify?token=${encodeURIComponent(token)}`);
+  async function fetchLink() {
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch(`/api/verify?token=${encodeURIComponent(token)}`, {
+        headers: {
+          'Authorization': 'A7b_C9d-E3f_G1hJ'
+        }
+      });
         const data = await res.json();
 
         if (!res.ok) {
