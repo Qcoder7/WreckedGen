@@ -14,7 +14,11 @@ export default function EnterUsername() {
 
     async function checkToken() {
       try {
-        const res = await fetch(`/api/check-enctoken?enctoken=${encodeURIComponent(enctoken)}`);
+        const res = await fetch(`/api/check-enctoken?enctoken=${encodeURIComponent(enctoken)}`, {
+          headers: {
+            'Authorization': 'A7b_C9d-E3f_G1hJ'
+          }
+        });
         const data = await res.json();
 
         if (res.ok && data.valid) {
@@ -37,9 +41,13 @@ export default function EnterUsername() {
     try {
       const res = await fetch('/api/send-discord', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'A7b_C9d-E3f_G1hJ'
+        },
         body: JSON.stringify({ username, enctoken }),
       });
+
 
       if (res.ok) {
         setSubmitted(true);
