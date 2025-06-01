@@ -21,7 +21,7 @@ async function connectToDatabase() {
 }
 
 function linkvertise(userid, link) {
-  const base_url = `https://link-to.net/${userid}/1/dynamic`; // fixed stable link part
+  const base_url = `https://link-to.net/${userid}/1/dynamic`;
   const encodedLink = Buffer.from(encodeURI(link)).toString('base64');
   return `${base_url}?r=${encodedLink}`;
 }
@@ -40,7 +40,14 @@ export default async function handler(req, res) {
     const { client, db } = await connectToDatabase();
     const collection = db.collection('tokens');
 
+    console.log('Received token:', token);
+
+    // DEBUG: log all tokens from DB (remove this after debugging)
+    const allTokens = await collection.find({}).toArray();
+    console.log('All tokens in DB:', allTokens);
+
     const tokenData = await collection.findOne({ token });
+    console.log('Token data found:', tokenData);
 
     if (!tokenData) {
       return res.status(404).json({ error: 'Token Not Found' });
