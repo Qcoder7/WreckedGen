@@ -2,15 +2,22 @@ import { MongoClient } from 'mongodb';
 
 const uri = 'mongodb+srv://qcoder:Ig5NOsXZUqG4dofX@verifystoretokens.bqzciv1.mongodb.net/?retryWrites=true&w=majority';
 
+const options = {
+  serverApi: {
+    version: '1',
+    strict: true,
+    deprecationErrors: true,
+  },
+};
+
 let cachedClient = null;
 let cachedDb = null;
 
-async function connectToDatabase() {
+async function connectToMongo() {
   if (cachedClient && cachedDb) {
     return { client: cachedClient, db: cachedDb };
   }
-
-  const client = new MongoClient(uri);
+  const client = new MongoClient(uri, options);
   await client.connect();
   const db = client.db('verifytokens');
 
@@ -20,9 +27,13 @@ async function connectToDatabase() {
   return { client, db };
 }
 
+function btoa(str) {
+  return Buffer.from(str).toString('base64');
+}
+
 function linkvertise(userid, link) {
   const base_url = `https://link-to.net/${userid}/1/dynamic`;
-  const encodedLink = Buffer.from(encodeURI(link)).toString('base64');
+  const encodedLink = btoa(encodeURI(link));
   return `${base_url}?r=${encodedLink}`;
 }
 
@@ -37,14 +48,11 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { client, db } = await connectToDatabase();
+    const { client, db } = await connectToMongo();
     const collection = db.collection('tokens');
 
+    // Debug logs (remove/comment after testing)
     console.log('Received token:', token);
-
-    // DEBUG: log all tokens from DB (remove this after debugging)
-    const allTokens = await collection.find({}).toArray();
-    console.log('All tokens in DB:', allTokens);
 
     const tokenData = await collection.findOne({ token });
     console.log('Token data found:', tokenData);
@@ -53,8 +61,8 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'Token Not Found' });
     }
 
-    const enctoken = Buffer.from(token).toString('base64');
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || '';
+    const enctoken = btoa(token);
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
 
     await collection.updateOne(
       { token },
