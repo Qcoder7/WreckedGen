@@ -32,59 +32,42 @@ function btoa(str) {
 }
 
 function linkvertise(userid, link) {
-  const base_url = `https://link-to.net/${userid}/1/dynamic`;
+  // Set waiting time to 10 seconds here
+  const base_url = `https://link-to.net/${userid}/10/dynamic`;
   const encodedLink = btoa(encodeURI(link));
   return `${base_url}?r=${encodedLink}`;
 }
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const token = req.query.token;
-  if (!token) {
+  const { token } = req.query;
+  if (!token || typeof token !== 'string') {
     return res.status(400).json({ error: 'Token query param is required' });
   }
 
   try {
-    const { client, db } = await connectToMongo();
+    const { db } = await connectToMongo();
     const collection = db.collection('tokens');
 
-    // Debug logs (remove/comment after testing)
-    console.log('Received token:', token);
-
-    const tokenData = await collection.findOne({ token });
-    console.log('Token data found:', tokenData);
-
-    if (!tokenData) {
+    const found = await collection.findOne({ token });
+    if (!found) {
       return res.status(404).json({ error: 'Token Not Found' });
     }
 
-    const enctoken = btoa(token);
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '';
+    const enctoken = Buffer.from(token).toString('base64');
+    const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress || '';
 
     await collection.updateOne(
       { token },
-      {
-        $set: {
-          enctoken,
-          status: 'pending',
-          ip,
-        },
-      }
+      { $set: { enctoken, status: 'pending', ip } }
     );
 
-    const lvUserID = 991963;
-    const finalLink = `https://wreckedgen.vercel.app/enterusername?enctoken=${enctoken}`;
-    const lvLink = linkvertise(lvUserID, finalLink);
+    const lvUserId = '991963';
+    const redirectUrl = `https://wreckedgen.vercel.app/enterusername?enctoken=${encodeURIComponent(enctoken)}`;
+    const lvLink = linkvertise(lvUserId, redirectUrl);
 
-    return res.status(200).json({
-      message: 'Token verified and processed',
-      lvLink,
-    });
-  } catch (error) {
-    console.error('DB error:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(200).json({ linkvertiseLink: lvLink });
+  } catch (err) {
+    console.error('Verify API error:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
