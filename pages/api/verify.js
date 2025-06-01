@@ -25,7 +25,7 @@ function btoa(str) {
 }
 
 function linkvertise(userid, link) {
-  const base_url = `https://link-to.net/${userid}/${Math.floor(Math.random() * 1000)}/dynamic`;
+const base_url = `https://link-to.net/${userid}/1/dynamic`;
   const href = base_url + "?r=" + btoa(encodeURI(link));
   return href;
 }
