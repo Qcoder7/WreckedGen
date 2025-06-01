@@ -24,12 +24,6 @@ function btoa(str) {
   return Buffer.from(str).toString('base64');
 }
 
-function linkvertise(userid, link) {
-const base_url = `https://link-to.net/${userid}/1/dynamic`;
-  const href = base_url + "?r=" + btoa(encodeURI(link));
-  return href;
-}
-
 export default async function handler(req, res) {
   const { token } = req.query;
   if (!token || typeof token !== 'string') {
@@ -46,7 +40,7 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'Token Not Found' });
     }
 
-    const enctoken = Buffer.from(token).toString('base64');
+    const enctoken = btoa(token);
     const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress || '';
 
     await collection.updateOne(
@@ -54,11 +48,19 @@ export default async function handler(req, res) {
       { $set: { enctoken, status: 'pending', ip } }
     );
 
-    const lvUserId = '991963';
+    // Create Cuty.io short link
     const redirectUrl = `https://wreckedgen.vercel.app/enterusername?enctoken=${encodeURIComponent(enctoken)}`;
-    const lvLink = `https://link-to.net/${lvUserId}/${Math.floor(Math.random() * 1000)}/dynamic?r=${Buffer.from(encodeURI(redirectUrl)).toString('base64')}`;
+    const cutyApiUrl = `https://api.cuty.io/quick?token=b32e615894ec673e8907845cb&url=${encodeURIComponent(redirectUrl)}&alias=${encodeURIComponent(token)}`;
 
-    return res.status(200).json({ linkvertiseLink: lvLink });
+    const response = await fetch(cutyApiUrl);
+    const data = await response.json();
+
+    if (!data.success) {
+      return res.status(500).json({ error: 'Failed to generate Cuty.io link', message: data.message });
+    }
+
+    return res.status(200).json({ shortLink: data.short_url });
+
   } catch (err) {
     console.error('Verify API error:', err);
     res.status(500).json({ error: 'Internal Server Error' });
