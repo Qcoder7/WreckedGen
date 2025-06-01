@@ -1,41 +1,33 @@
 import { MongoClient } from 'mongodb';
 
-const uri = 'mongodb+srv://qcoder:Ig5NOsXZUqG4dofX@verifystoretokens.bqzciv1.mongodb.net/?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://qcoder:Ig5NOsXZUqG4dofX@verifystoretokens.bqzciv1.mongodb.net/verifystore?retryWrites=true&w=majority';
 
 const options = {
   serverApi: {
     version: '1',
     strict: true,
     deprecationErrors: true,
-  },
+  }
 };
 
 let cachedClient = null;
-let cachedDb = null;
-
 async function connectToMongo() {
-  if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb };
-  }
+  if (cachedClient) return cachedClient;
   const client = new MongoClient(uri, options);
   await client.connect();
-  const db = client.db('verifytokens');
-
   cachedClient = client;
-  cachedDb = db;
-
-  return { client, db };
+  return client;
 }
 
+// Base64 encode function (Node.js Buffer)
 function btoa(str) {
   return Buffer.from(str).toString('base64');
 }
 
 function linkvertise(userid, link) {
-  // Set waiting time to 10 seconds here
-  const base_url = `https://link-to.net/${userid}/10/dynamic`;
-  const encodedLink = btoa(encodeURI(link));
-  return `${base_url}?r=${encodedLink}`;
+  const base_url = `https://link-to.net/${userid}/${Math.floor(Math.random() * 1000)}/dynamic`;
+  const href = base_url + "?r=" + btoa(encodeURI(link));
+  return href;
 }
 
 export default async function handler(req, res) {
@@ -45,7 +37,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { db } = await connectToMongo();
+    const client = await connectToMongo();
+    const db = client.db();
     const collection = db.collection('tokens');
 
     const found = await collection.findOne({ token });
@@ -63,7 +56,7 @@ export default async function handler(req, res) {
 
     const lvUserId = '991963';
     const redirectUrl = `https://wreckedgen.vercel.app/enterusername?enctoken=${encodeURIComponent(enctoken)}`;
-    const lvLink = linkvertise(lvUserId, redirectUrl);
+    const lvLink = `https://link-to.net/${lvUserId}/${Math.floor(Math.random() * 1000)}/dynamic?r=${Buffer.from(encodeURI(redirectUrl)).toString('base64')}`;
 
     return res.status(200).json({ linkvertiseLink: lvLink });
   } catch (err) {
