@@ -1,16 +1,15 @@
 import { NextResponse } from 'next/server';
 
-export function middleware(request) {
-  const SECRET_TOKEN = process.env.API_SECRET_TOKEN;
-  console.log('SECRET_TOKEN in middleware:', SECRET_TOKEN); // DEBUG
+const SECRET_TOKEN = process.env.API_SECRET_TOKEN;
 
-  const authHeader = request.headers.get('authorization');
+export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith('/api/')) {
-    if (!SECRET_TOKEN || authHeader !== `Bearer ${SECRET_TOKEN}`) {
-      console.log('Auth failed. Header:', authHeader); // DEBUG
-      return new Response(
+    const authHeader = request.headers.get('authorization')?.trim();
+
+    if (!SECRET_TOKEN || authHeader !== SECRET_TOKEN.trim()) {
+      return new NextResponse(
         JSON.stringify({ error: 'Unauthorized access to API' }),
         {
           status: 401,
