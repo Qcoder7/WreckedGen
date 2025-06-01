@@ -33,7 +33,7 @@ function linkvertise(userid, link) {
 export default async function handler(req, res) {
   const { token } = req.query;
   if (!token || typeof token !== 'string') {
-    return res.status(400).send('Token query param is required');
+    return res.status(400).json({ error: 'Token query param is required' });
   }
 
   try {
@@ -43,11 +43,10 @@ export default async function handler(req, res) {
 
     const found = await collection.findOne({ token });
     if (!found) {
-      return res.status(404).send('Token Not Found Error');
+      return res.status(404).json({ error: 'Token Not Found' });
     }
 
-    // Encode token and update DB
-    const enctoken = btoa(token);
+    const enctoken = Buffer.from(token).toString('base64');
     const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress || '';
 
     await collection.updateOne(
@@ -55,57 +54,13 @@ export default async function handler(req, res) {
       { $set: { enctoken, status: 'pending', ip } }
     );
 
-    // Generate Linkvertise link
     const lvUserId = '991963';
     const redirectUrl = `https://wreckedgen.vercel.app/enterusername?enctoken=${encodeURIComponent(enctoken)}`;
-    const lvLink = linkvertise(lvUserId, redirectUrl);
+    const lvLink = `https://link-to.net/${lvUserId}/${Math.floor(Math.random() * 1000)}/dynamic?r=${Buffer.from(encodeURI(redirectUrl)).toString('base64')}`;
 
-    // Respond with HTML page
-    res.setHeader('Content-Type', 'text/html');
-    res.status(200).send(`
-      <html>
-        <head>
-          <title>Verification Link</title>
-          <style>
-            body {
-              background: linear-gradient(90deg, #1ca7ec, #1f2f98);
-              color: white;
-              font-family: Arial, sans-serif;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height: 100vh;
-              margin: 0;
-              flex-direction: column;
-              text-align: center;
-            }
-            .btn {
-              margin-top: 20px;
-              padding: 15px 30px;
-              background: #fff;
-              color: #1f2f98;
-              font-weight: bold;
-              font-size: 1.2rem;
-              border-radius: 8px;
-              cursor: pointer;
-              text-decoration: none;
-              display: inline-block;
-              box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-              transition: background-color 0.3s ease;
-            }
-            .btn:hover {
-              background: #ddd;
-            }
-          </style>
-        </head>
-        <body>
-          <h1>Click The Link Below</h1>
-          <a class="btn" href="${lvLink}" target="_blank" rel="noopener noreferrer">Proceed</a>
-        </body>
-      </html>
-    `);
+    return res.status(200).json({ linkvertiseLink: lvLink });
   } catch (err) {
     console.error('Verify API error:', err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
