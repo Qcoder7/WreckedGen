@@ -25,13 +25,14 @@ export default function Verify() {
           return;
         }
 
-        setLink(data.linkvertiseLink);
+        setLink(data.shortLink); // updated to use Cuty.io response
         setLoading(false);
       } catch (e) {
         setError('Failed to fetch verification link.');
         setLoading(false);
       }
     }
+
     fetchLink();
   }, [token]);
 
