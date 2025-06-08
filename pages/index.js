@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div style={{
-      position: 'fixed',
+      position: 'absolute',
       height: '100vh',
       backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/background.jpg')",
       backgroundColor: '#000',
