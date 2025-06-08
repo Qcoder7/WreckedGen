@@ -2,7 +2,6 @@ export default function Home() {
   return (
     <div style={{
       height: '100vh',
-      width: '100vw',
       backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('/background.jpg')",
       backgroundColor: 'black',
       backgroundPosition: 'center',
