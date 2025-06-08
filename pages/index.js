@@ -3,12 +3,12 @@ export default function Home() {
     <div style={{
       height: '100vh',
       width: '100vw',
-      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/background.jpg')",
+      backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('/background.jpg')",
       backgroundColor: '#000',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      color: 'white',
+      color: 'black',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -16,7 +16,6 @@ export default function Home() {
       textAlign: 'center',
       margin: 0,
       padding: 0,
-      overflow: 'hidden'
     }}>
       <p>Home Page — Coming Soon</p>
     </div>
