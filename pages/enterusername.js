@@ -61,7 +61,6 @@ export default function EnterUsername() {
 
   return (
     <div style={{
-      position: 'fixed',
       height: '100vh',
       display: 'flex',
       flexDirection: 'column',
