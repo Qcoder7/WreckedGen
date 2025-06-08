@@ -41,18 +41,22 @@ useEffect(() => {
   }, [token]);
 
   return (
-    <div style={{
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      background: 'linear-gradient(90deg, #1ca7ec, #1f2f98)',
-      color: 'white',
-      fontFamily: 'Arial, sans-serif',
-      textAlign: 'center',
-      padding: '0 20px'
-    }}>
+      <div style={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/background.jpg')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        color: 'white',
+        fontFamily: 'Arial, sans-serif',
+        textAlign: 'center',
+        padding: '0 20px'
+      }}>
+
       {loading && <h2>Please Wait While We Verify You And Generate Your Link</h2>}
       {error && <h2>{error}</h2>}
       {link && (
