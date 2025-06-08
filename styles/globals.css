@@ -1,5 +1,10 @@
-html, body {
+html, body, #__next {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
+  height: 100%;
+  background-color: black;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
