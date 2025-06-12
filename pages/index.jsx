@@ -80,7 +80,7 @@ export default function Home() {
       <li className="card">
         <img src="images/camping-1.jpg" alt="img" />
         <h3>Wcoder</h3>
-        <p>Founder & Developer<br /></br>Discord Username: wcoder1008</p>
+        <p>Founder & Developer<br />Discord Username: wcoder1008</p>
       </li>
       <li className="card">
         <img src="images/camping-2.jpg" alt="img" />
