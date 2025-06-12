@@ -23,7 +23,7 @@ export default function Home() {
             <p>
               <img
                 className="img-responsive"
-                src="assets/img/portfolio/folio01-preview.jpg"
+                src=""
                 alt=""
               />
             </p>
@@ -39,7 +39,7 @@ export default function Home() {
               <figure>
                 <img
                   className="img-responsive"
-                  src="assets/img/portfolio/folio02.jpg"
+                  src=""
                   alt=""
                 />
                 <figcaption>
@@ -58,7 +58,7 @@ export default function Home() {
               <figure>
                 <img
                   className="img-responsive"
-                  src="assets/img/portfolio/folio03.jpg"
+                  src=""
                   alt=""
                 />
                 <figcaption>
@@ -79,7 +79,7 @@ export default function Home() {
               <figure>
                 <img
                   className="img-responsive"
-                  src="assets/img/portfolio/folio04.jpg"
+                  src=""
                   alt=""
                 />
                 <figcaption>
@@ -98,7 +98,7 @@ export default function Home() {
               <figure>
                 <img
                   className="img-responsive"
-                  src="assets/img/portfolio/folio05.jpg"
+                  src=""
                   alt=""
                 />
                 <figcaption>
@@ -117,7 +117,7 @@ export default function Home() {
               <figure>
                 <img
                   className="img-responsive"
-                  src="assets/img/portfolio/folio06.jpg"
+                  src=""
                   alt=""
                 />
                 <figcaption>
@@ -148,7 +148,7 @@ export default function Home() {
               <div className="col-lg-3 centered">
                 <img
                   className="img img-circle"
-                  src="assets/img/team/team01.jpg"
+                  src=""
                   height="120"
                   width="120"
                   alt=""
@@ -173,7 +173,7 @@ export default function Home() {
               <div className="col-lg-3 centered">
                 <img
                   className="img img-circle"
-                  src="assets/img/team/team02.jpg"
+                  src=""
                   height="120"
                   width="120"
                   alt=""
@@ -198,7 +198,7 @@ export default function Home() {
               <div className="col-lg-3 centered">
                 <img
                   className="img img-circle"
-                  src="assets/img/team/team03.jpg"
+                  src=""
                   height="120"
                   width="120"
                   alt=""
@@ -223,7 +223,7 @@ export default function Home() {
               <div className="col-lg-3 centered">
                 <img
                   className="img img-circle"
-                  src="assets/img/team/team04.jpg"
+                  src=""
                   height="120"
                   width="120"
                   alt=""
