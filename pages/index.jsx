@@ -5,10 +5,16 @@
   <meta name="author" content="webthemez" />
   <title>Wrecked G3N</title>
 
-<style>
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600);
-@import url(http://fonts.googleapis.com/css?family=Raleway:600,700,800);
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css?family=Raleway:600,700,800&display=swap"
+    rel="stylesheet"
+  />
 
+<style>
 html, button, input, select, textarea {
 	color: #222;
 }
