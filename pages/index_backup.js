@@ -1,3 +1,4 @@
+import React from 'react';
 
 <div>
   <meta charSet="utf-8" />
