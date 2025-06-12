@@ -27,7 +27,16 @@ export default function Home() {
       </ul>
     </nav>
   </header>
-  <section className="homepage" id="home">
+  <section className="homepage"
+           id="home"
+           style={{
+    backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/background.jpg')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    height: '100vh',
+    color: 'white'
+  }}>
     <div className="content">
       <div className="text">
         <h1>Wrecked G3N</h1>
