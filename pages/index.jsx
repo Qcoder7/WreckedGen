@@ -42,32 +42,32 @@ export default function Home() {
     <p>Explore our wide range of Services, Tools, Accounts, etc</p>
     <ul className="cards">
       <li className="card">
-        <img src="images/tents.jpg" alt="img" />
+        <img src="/accs.png" alt="img" />
         <h3>Accounts</h3>
         <p>Get All types of accs like free and premium</p>
       </li>
       <li className="card">
-        <img src="images/bags.jpg" alt="img" />
+        <img src="/service.png" alt="img" />
         <h3>Services</h3>
         <p>Get our lifetime services for some accounts and tools</p>
       </li>
       <li className="card">
-        <img src="images/stoves.jpg" alt="img" />
+        <img src="/tools.png" alt="img" />
         <h3>Tools</h3>
         <p>Get the Tools made by us and us only at cheap cost</p>
       </li>
       <li className="card">
-        <img src="images/backpacks.jpg" alt="img" />
+        <img src="/bots.png" alt="img" />
         <h3>Custom Bots</h3>
         <p>Get Bots like ours for your server custom made</p>
       </li>
       <li className="card">
-        <img src="images/chair.jpg" alt="img" />
+        <img src="/server.png" alt="img" />
         <h3>Cheap/Free Hosting Methods</h3>
         <p>Not rich enough get cheap and free hosting</p>
       </li>
       <li className="card">
-        <img src="images/light.jpg" alt="img" />
+        <img src="/web.png" alt="img" />
         <h3>Custom Web</h3>
         <p>Get Your own custom web like ours</p>
       </li>
@@ -78,32 +78,32 @@ export default function Home() {
     <p>Take a look at some of our Main Team</p>
     <ul className="cards">
       <li className="card">
-        <img src="images/camping-1.jpg" alt="img" />
+        <img src="/wcoder.png" alt="img" />
         <h3>Wcoder</h3>
         <p>Founder & Developer<br />Discord Username: wcoder1008</p>
       </li>
       <li className="card">
-        <img src="images/camping-2.jpg" alt="img" />
+        <img src="/kurapika.png" alt="img" />
         <h3>Kurapika</h3>
         <p>Founder & Manager<br />Discord Username: kurapika_alt</p>
       </li>
       <li className="card">
-        <img src="images/camping-3.jpg" alt="img" />
+        <img src="/itsmeboi.png" alt="img" />
         <h3>ItsMeBoi</h3>
         <p>Owner & Developer<br />Discord Username: itsmeboi0923</p>
       </li>
       <li className="card">
-        <img src="images/camping-4.jpg" alt="img" />
+        <img src="minx.png" alt="img" />
         <h3>M1NX</h3>
         <p>Co Owner & Tool Developer<br />Discord Username: anush.exe</p>
       </li>
       <li className="card">
-        <img src="images/camping-5.jpg" alt="img" />
+        <img src="madara.png" alt="img" />
         <h3>Madara</h3>
         <p>Admin & Manager<br />Discord Username: mahathir0712</p>
       </li>
       <li className="card">
-        <img src="images/camping-6.jpg" alt="img" />
+        <img src="zenoxsir.png" alt="img" />
         <h3>Zenoxsir</h3>
         <p>Admin & Manager<br />Discord Username: z3n0xs1r</p>
       </li>
