@@ -1,3 +1,5 @@
+import React from 'react';
+
 var YourComponent = React.createClass({
   render: function() {
     return (
