@@ -47,7 +47,8 @@ export default function EnterUsername() {
         },
         body: JSON.stringify({ username, enctoken }),
       });
-
+  } 
+  };
 
 
   return (
