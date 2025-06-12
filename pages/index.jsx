@@ -83,8 +83,8 @@ export default function Home() {
     </ul>
   </section>
   <section className="portfolio" id="team">
-    <h2>Our Team</h2>
-    <p>Take a look at some of our Main Team</p>
+    <h2>Our Main Team</h2>
+    <p>Take a look at some of our team member. <br /> NOTE: THERE ARE SOME MANY MORE STAFF STILL</p>
     <ul className="cards">
       <li className="card">
         <img src="/wcoder.png" alt="img" />
