@@ -80,32 +80,32 @@ export default function Home() {
       <li className="card">
         <img src="images/camping-1.jpg" alt="img" />
         <h3>Wcoder</h3>
-        <p>Founder & Developer<br></br>Discord Username: wcoder1008</p>
+        <p>Founder & Developer<br></br>Discord Username- wcoder1008</p>
       </li>
       <li className="card">
         <img src="images/camping-2.jpg" alt="img" />
         <h3>Kurapika</h3>
-        <p>Founder & Manager<br>Discord Username: kurapika_alt</p>
+        <p>Founder & Manager<br>Discord Username- kurapika_alt</p>
       </li>
       <li className="card">
         <img src="images/camping-3.jpg" alt="img" />
         <h3>ItsMeBoi</h3>
-        <p>Owner & Developer<br>Discord Username: itsmeboi0923</p>
+        <p>Owner & Developer<br>Discord Username- itsmeboi0923</p>
       </li>
       <li className="card">
         <img src="images/camping-4.jpg" alt="img" />
         <h3>M1NX</h3>
-        <p>Co Owner & Tool Developer<br>Discord Username: anush.exe</p>
+        <p>Co Owner & Tool Developer<br>Discord Username- anush.exe</p>
       </li>
       <li className="card">
         <img src="images/camping-5.jpg" alt="img" />
         <h3>Madara</h3>
-        <p>Admin & Manager<br>Discord Username: mahathir0712</p>
+        <p>Admin & Manager<br>Discord Username- mahathir0712</p>
       </li>
       <li className="card">
         <img src="images/camping-6.jpg" alt="img" />
         <h3>Zenoxsir</h3>
-        <p>Admin & Manager<br>Discord Username: z3n0xs1r</p>
+        <p>Admin & Manager<br>Discord Username- z3n0xs1r</p>
       </li>
     </ul>
   </section>
