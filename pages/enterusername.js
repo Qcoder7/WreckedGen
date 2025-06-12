@@ -49,15 +49,6 @@ export default function EnterUsername() {
       });
 
 
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        alert('Failed to submit username.');
-      }
-    } catch {
-      alert('Something went wrong.');
-    }
-  };
 
   return (
     <div style={{
