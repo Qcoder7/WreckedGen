@@ -56,7 +56,7 @@ export default function Home() {
         <p data-aos="fade-up">Get All types of accs like free and premium</p>
       </li>
       <li className="card">
-        <img src="/service.png" alt="img" / data-aos="fade-up">
+        <img src="/nigga.png" alt="img" / data-aos="fade-up">
         <h3 data-aos="fade-up">Services</h3>
         <p data-aos="fade-up">Get our lifetime services for some accounts and tools</p>
       </li>
