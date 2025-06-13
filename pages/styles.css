@@ -614,3 +614,47 @@ margin: 10px auto;
 margin-top:30px;
 }
 }
+
+
+/* === Enhanced Animations === */
+
+/* Animation Enhancements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: fadeIn 1s ease-in forwards;
+  background: #f5f5f5;
+}
+
+.navbar, header, button, a {
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover, a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Applying animation utility class */
+.animated {
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
