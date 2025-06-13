@@ -1,7 +1,7 @@
 export default function Home() {
   return (
 
-<div>
+<div className="animated">
   {/* Coding By CodingNepal - www.codingnepalweb.com */}
   <meta charSet="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
