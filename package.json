@@ -3,9 +3,9 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "npx next dev",
+    "build": "npx next build",
+    "start": "npx next start"
   },
   "dependencies": {
     "aos": "^2.3.4",
